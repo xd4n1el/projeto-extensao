@@ -12,7 +12,11 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
-    "styled-components": "^6.1.0"
+    "react-slick": "^0.29.0",
+    "react-tooltip": "^5.21.5",
+    "react-virtualized-auto-sizer": "^1.0.20",
+    "styled-components": "^6.1.0",
+    "twin.macro": "^3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -46,6 +50,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react": "^7.33.2",
-    "prettier": "^3.0.3"
+    "prettier": "^3.0.3",
+    "tailwindcss": "^3.3.3"
   }
 }

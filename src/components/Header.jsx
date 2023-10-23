@@ -1,21 +1,26 @@
+import { useRef } from 'react';
 import styled from 'styled-components';
+
+import { NavLink } from 'react-router-dom';
 
 import { ReactComponent as EarthIcon } from 'assets/earth.svg';
 
 import { breakpoints } from 'helpers/breakpoints';
-import { useRef } from 'react';
+import { BIBLIOGRAPHY, HOME } from 'utils/Constants';
+import tw from 'twin.macro';
 
 const Wrapper = styled.div`
-  display: flex;
-  width: 100%;
-  height: 70px;
   background-color: var(--basic-green);
-  box-sizing: border-box;
-  padding: 2px 12px;
+  ${tw`flex w-full [height: 70px] box-border [padding: 2px 12px]`}
+
+  & > * {
+    font-family: 'Oswald', sans-serif !important;
+  }
 
   @media (min-width: ${breakpoints['2xl']}px) {
     height: 95px;
     padding: 4px 20px;
+    ${tw`[height: 95px] [padding: 4px 20px]`}
   }
 `;
 
@@ -36,12 +41,38 @@ const Title = styled.h1`
   color: #ffffff;
   text-align: start;
   margin-left: 10px;
-  font-family: 'Oswald', sans-serif;
+
   letter-spacing: 2px;
 
   @media (min-width: ${breakpoints['2xl']}px) {
     font-size: 20px;
     font-weight: 900;
+  }
+`;
+
+const LinksContainer = styled.div`
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  margin: auto 0 auto auto;
+
+  & > * {
+    margin-right: 10px;
+  }
+
+  & > *:last-child {
+    margin-right: 0;
+  }
+`;
+
+const Link = styled(NavLink)`
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-size: 20px;
+
+  &.active {
+    text-decoration: overline;
   }
 `;
 
@@ -58,6 +89,11 @@ const Header = () => {
           Conscientiza <br /> Aquecimento <br /> Global
         </Title>
       </IconContainer>
+
+      <LinksContainer>
+        <Link to={HOME}>Início</Link>
+        <Link to={BIBLIOGRAPHY}>Bibliográfia</Link>
+      </LinksContainer>
     </Wrapper>
   );
 };
