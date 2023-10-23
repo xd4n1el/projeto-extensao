@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import tw from 'twin.macro';
 import { BIBLIOGRAPHIES } from 'utils/Constants';
 
 const Wrapper = styled.div`
@@ -14,6 +15,10 @@ const TextContainer = styled.div`
   display: flex;
   width: fit-content;
   height: fit-content;
+
+  & > * {
+    ${tw`!mb-4 last:mb-0`}
+  }
 `;
 
 const Text = styled.p`
@@ -31,6 +36,8 @@ const Link = styled.a`
   margin: 0;
   padding: 0;
   margin-right: 6px;
+
+  ${tw`text-themes-nature-green font-bold`}
 `;
 
 const Bibliography = () => {
@@ -38,11 +45,11 @@ const Bibliography = () => {
     return BIBLIOGRAPHIES.map(site => (
       <TextContainer key={site.name}>
         <Text>
-          <b>{site.article}</b> - {site.desription}
+          <b>{site.article}</b> - {site.description}
         </Text>
 
         <Link href={site.url} target="blank" about="global warming">
-          AQUI
+          AQUI.
         </Link>
       </TextContainer>
     ));

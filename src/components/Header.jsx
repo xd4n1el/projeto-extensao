@@ -11,7 +11,7 @@ import tw from 'twin.macro';
 
 const Wrapper = styled.div`
   background-color: var(--basic-green);
-  ${tw`flex w-full [height: 70px] box-border [padding: 2px 12px]`}
+  ${tw`flex w-full [height: 70px] box-border [padding: 6px 40px] border-b-4 border-b-black`}
 
   & > * {
     font-family: 'Oswald', sans-serif !important;
@@ -36,7 +36,7 @@ const Title = styled.h1`
   height: fit-content;
   width: fit-content;
   line-height: 100%;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 900;
   color: #ffffff;
   text-align: start;
@@ -82,7 +82,7 @@ const Header = () => {
   return (
     <Wrapper>
       <IconContainer ref={iconRef}>
-        <EarthIcon width={70} height={70} fill="#FFFFFF" />
+        <EarthIcon width={50} height={50} fill="#FFFFFF" />
 
         <Title>
           Projeto <br />

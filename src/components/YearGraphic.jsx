@@ -4,7 +4,7 @@ import tw from 'twin.macro';
 import ReactApexChart from 'react-apexcharts';
 
 const Container = styled.div`
-  ${tw`w-full h-auto flex border border-red-600 relative !p-0 !m-0`}
+  ${tw`w-full h-auto flex relative !p-0 !m-0`}
 
   & > * {
     ${tw`w-full h-full`}
@@ -12,8 +12,9 @@ const Container = styled.div`
 `;
 
 const type = 'bar';
-const years = [2018, 2019, 2020, 2021];
-const temperatures = [47.2, 44.6, 56.7, 44.4];
+const countries = ['Iraque', 'Paquistão', 'França', 'Brasil', 'Canadá'];
+const years = [2016, 2017, 2019, 2020, 2021];
+const temperatures = [53.9, 53.7, 46, 44.8, 49.6];
 
 const series = [
   {
@@ -28,7 +29,7 @@ const YearGraphic = () => {
       <ReactApexChart
         series={series}
         type="bar"
-        height="1000px"
+        height="500px"
         width="100%"
         options={{
           chart: {
@@ -43,6 +44,19 @@ const YearGraphic = () => {
               show: false,
             },
           },
+          grid: {
+            show: false,
+          },
+          title: {
+            text: 'Temperaturas Mais Altas Nos Últimos Anos',
+            margin: 20,
+            style: {
+              color: '#FFA822',
+              fontSize: '24px',
+              fontWeight: 600,
+            },
+          },
+          colors: ['#FFA822'],
           tooltip: {
             x: {
               formatter: function () {
@@ -50,8 +64,10 @@ const YearGraphic = () => {
               },
             },
             y: {
-              formatter: function (value) {
-                return `${value}° C`;
+              formatter: function (value, { dataPointIndex: index }) {
+                const country = countries[index];
+
+                return `${value}° C | ${country}`;
               },
             },
           },
