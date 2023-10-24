@@ -32,4 +32,11 @@ export const BIBLIOGRAPHIES = [
     description: 'Informações sobre os causadores do aquecimento global',
     article: 'Aquecimento Global: Reflexos do Desmatamento',
   },
+  {
+    url: 'https://www.wwf.org.br/natureza_brasileira/questoes_ambientais/camada_ozonio/',
+    name: 'WWF',
+    accessDate: '23/10/2023',
+    description: 'Informações sobre a camada de ozônio',
+    article: 'O Que é a Camada de Ozônio?',
+  },
 ];
