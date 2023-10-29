@@ -48,10 +48,10 @@ const YearGraphic = () => {
             show: false,
           },
           title: {
-            text: 'Temperaturas Mais Altas Nos Últimos Anos',
+            text: 'Temperaturas Mais Altas No Mundo Nos Últimos Anos',
             margin: 20,
             style: {
-              color: '#FFA822',
+              color: 'var(--basic-green)',
               fontSize: '24px',
               fontWeight: 600,
             },
