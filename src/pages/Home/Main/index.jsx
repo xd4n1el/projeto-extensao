@@ -180,7 +180,7 @@ const MainPage = () => {
             impróprios;
           </Text>
           <Text>
-            - Dificuldade nos setores agrícolas de irregularidades climáticas;
+            - Dificuldade nos setores agrícolas por irregularidades climáticas;
           </Text>
         </Section>
 
