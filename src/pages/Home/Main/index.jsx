@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import useWindowSizes from 'hooks/useWindowSizes';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import api from 'services/api';
 
 import YearGraphic from 'components/YearGraphic';
 import ImageSlider from 'components/ImageSlider';
@@ -9,6 +10,8 @@ import { Transition } from 'react-transition-group';
 
 import { ReactComponent as ArrowIcon } from 'assets/arrow.svg';
 import { getImage } from 'utils/Functions';
+import CommentForm from 'components/CommentForm';
+import CommentBox from 'components/CommentBox';
 
 const Wrapper = styled.div`
   ${tw`flex flex-col w-full h-full overflow-auto`}
@@ -98,9 +101,30 @@ const Arrow = styled(ArrowIcon)`
   ${tw`absolute [transform: rotate(90deg)] [margin: 15% 0% 0% 24%]`}
 `;
 
+const Container = styled.div`
+  ${tw`w-full h-fit flex flex-col md:grid md:[grid-template-columns: 40% 60%]`}
+
+  & .add-comment-container {
+    ${tw`w-full h-fit flex`}
+  }
+
+  & .list-comment-container {
+    ${tw`w-full h-full flex flex-col`}
+
+    & > * {
+      ${tw`mb-8 last:mb-0 `}
+    }
+  }
+
+  & > * {
+    ${tw`mb-6 last:mb-0`}
+  }
+`;
+
 const MainPage = () => {
   const [inProp, setInProp] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [comments, setComments] = useState([]);
 
   const nodeRef = useRef(null);
 
@@ -110,7 +134,33 @@ const MainPage = () => {
     setTimeout(() => {
       setInProp(true);
     }, 300);
+
+    const getComments = async () => {
+      try {
+        const { data, status } = await api.get('/comments');
+
+        if (status !== 200) throw new Error();
+
+        const usersComments = data.comments.map(comment => ({
+          id: comment?._id,
+          message: comment?.message,
+          createdAt: new Date(comment?.createdAt),
+        }));
+
+        setComments(usersComments);
+      } catch {
+        return;
+      }
+    };
+
+    getComments();
   }, []);
+
+  const renderComments = useMemo(() => {
+    return comments.map(comment => {
+      return <CommentBox key={comment._id} {...comment} />;
+    });
+  }, [comments]);
 
   const duration = 700;
 
@@ -285,6 +335,30 @@ const MainPage = () => {
             desmatamentos, contribuindo para que o meio-ambiente tenha um
             sistema estável (influência direta nas temperatuas).
           </Text>
+        </Section>
+
+        <Section>
+          <Subtitle>Comentários</Subtitle>
+
+          <Container>
+            <div className="add-comment-container">
+              <CommentForm
+                afterSubmit={value => {
+                  setComments(list => {
+                    list.push({
+                      name: value?.name,
+                      message: value?.message,
+                      id: value?.id,
+                    });
+
+                    return [...list];
+                  });
+                }}
+              />
+            </div>
+
+            <div className="list-comment-container">{renderComments}</div>
+          </Container>
         </Section>
       </Main>
     </Wrapper>
