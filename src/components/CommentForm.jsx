@@ -23,7 +23,7 @@ const Form = styled.form`
 `;
 
 const InputBox = styled.div`
-  ${tw`w-full h-fit box-border py-2 flex flex-col relative mb-6 last:mb-0`}
+  ${tw`w-full h-fit box-border py-2 flex flex-col relative mb-2 last:mb-0`}
 `;
 
 const Label = styled.label`
@@ -67,7 +67,7 @@ const TextArea = styled.textarea`
 `;
 
 const ErrorText = styled.p`
-  ${tw`text-red-600 font-bold text-sm m-0 p-0 w-fit h-fit mb-4`}
+  ${tw`text-red-600 font-bold text-sm m-0 p-0 w-fit h-fit mb-2`}
 
   animation: ${fadeIn} 700ms linear;
 `;
@@ -88,7 +88,7 @@ const validationSchema = yup.object({
   message: yup
     .string()
     .min(3, 'Deve ter no mínimo 3 caracteres')
-    .required('Campo MENSAGEM deve ser preenchido.'),
+    .required('Campo COMENTÁRIO deve ser preenchido.'),
 });
 
 const CommentForm = ({ afterSubmit = () => {} }) => {

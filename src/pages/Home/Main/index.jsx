@@ -102,14 +102,35 @@ const Arrow = styled(ArrowIcon)`
 `;
 
 const Container = styled.div`
-  ${tw`w-full h-fit flex flex-col md:grid md:[grid-template-columns: 40% 60%]`}
+  ${tw`w-full h-fit flex flex-col md:flex-row [max-height: 600px] overflow-hidden`}
 
   & .add-comment-container {
-    ${tw`w-full h-fit flex`}
+    ${tw`[width: 48%] [max-width: 600px] h-fit flex`}
   }
 
   & .list-comment-container {
-    ${tw`w-full h-full flex flex-col`}
+    ${tw`w-11/12 [max-width: 1000px] ml-auto h-full flex flex-col !overflow-y-auto box-border p-2 rounded-xl`}
+
+    &::-webkit-scrollbar {
+      width: 5px !important;
+    }
+
+    &::-webkit-scrollbar-button {
+      display: none !important;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--theme-green);
+    }
+
+    &::-webkit-scrollbar-track-piece {
+      background-color: #f1f1f1;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--basic-green);
+      border-radius: 12px;
+    }
 
     & > * {
       ${tw`mb-8 last:mb-0 `}
@@ -143,6 +164,7 @@ const MainPage = () => {
 
         const usersComments = data.comments.map(comment => ({
           id: comment?._id,
+          name: comment?.name,
           message: comment?.message,
           createdAt: new Date(comment?.createdAt),
         }));
